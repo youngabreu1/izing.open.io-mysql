@@ -1,25 +1,13 @@
-import { QueryInterface, DataTypes, Sequelize } from "sequelize";
+import { QueryInterface, DataTypes } from "sequelize";
 
 module.exports = {
   up: (queryInterface: QueryInterface) => {
-    return Promise.all([
-      queryInterface.changeColumn("ApiMessages", "id", {
-        allowNull: false,
-        primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.literal("gen_random_uuid()")
-      })
-    ]);
+    // Nada a fazer aqui, já que a coluna 'id' já deve ser uma chave primária
+    return Promise.resolve();
   },
 
   down: (queryInterface: QueryInterface) => {
-    return Promise.all([
-      queryInterface.changeColumn("ApiMessages", "id", {
-        allowNull: false,
-        primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.literal("gen_random_uuid()")
-      })
-    ]);
+    // Nada a fazer aqui, já que a coluna 'id' já deve ser uma chave primária
+    return Promise.resolve();
   }
 };

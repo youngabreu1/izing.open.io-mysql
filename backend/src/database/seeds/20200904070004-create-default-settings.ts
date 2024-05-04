@@ -1,23 +1,79 @@
 import { QueryInterface } from "sequelize";
+'use strict';
 
 module.exports = {
-  up: (queryInterface: QueryInterface) => {
-    return queryInterface.sequelize.query(
-      `
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('userCreation', 'disabled', '2020-12-12 16:08:45.354', '2020-12-12 16:08:45.354', 1, 1);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('NotViewTicketsQueueUndefined', 'disabled', '2020-12-12 16:08:45.354', '2020-12-12 16:08:45.354', 1, 2);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('NotViewTicketsChatBot', 'disabled', '2020-12-12 16:08:45.354', '2020-12-12 16:08:45.354', 1, 3);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('DirectTicketsToWallets', 'disabled', '2020-12-12 16:08:45.354', '2020-12-12 16:08:45.354', 1, 4);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('NotViewAssignedTickets', 'disabled', '2020-12-12 16:08:45.354', '2020-12-12 16:08:45.354', 1, 6);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('botTicketActive', '3', '2020-12-12 16:08:45.354', '2022-07-01 21:10:02.076', 1, 5);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('ignoreGroupMsg', 'enabled', '2022-12-16 16:08:45.354' , '2022-12-16 21:10:02.076', 1, 7);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('rejectCalls', 'disabled', '2020-12-12 16:08:45.354', '2020-12-12 16:08:45.354', 1, 9);
-      INSERT INTO public."Settings" ("key", value, "createdAt", "updatedAt", "tenantId", id) VALUES('callRejectMessage', 'As chamadas de voz e vídeo estão desabilitas para esse WhatsApp, favor enviar uma mensagem de texto.', '2020-12-12 16:08:45.354', '2020-12-12 16:08:45.354', 1, 10);
-      `
-    );
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkInsert('Settings', [
+      {
+        key: 'userCreation',
+        value: 'disabled',
+        createdAt: '2020-12-12 16:08:45.354',
+        updatedAt: '2020-12-12 16:08:45.354',
+        tenantId: 1,
+        id: 1
+      },
+      {
+        key: 'NotViewTicketsQueueUndefined',
+        value: 'disabled',
+        createdAt: '2020-12-12 16:08:45.354',
+        updatedAt: '2020-12-12 16:08:45.354',
+        tenantId: 1,
+        id: 2
+      },
+      {
+        key: 'NotViewTicketsChatBot',
+        value: 'disabled',
+        createdAt: '2020-12-12 16:08:45.354',
+        updatedAt: '2020-12-12 16:08:45.354',
+        tenantId: 1,
+        id: 3
+      },
+      {
+        key: 'DirectTicketsToWallets',
+        value: 'disabled',
+        createdAt: '2020-12-12 16:08:45.354',
+        updatedAt: '2020-12-12 16:08:45.354',
+        tenantId: 1,
+        id: 4
+      },
+      {
+        key: 'botTicketActive',
+        value: '3',
+        createdAt: '2020-12-12 16:08:45.354',
+        updatedAt: '2022-07-01 21:10:02.076',
+        tenantId: 1,
+        id: 5
+      },
+      {
+        key: 'ignoreGroupMsg',
+        value: 'enabled',
+        createdAt: '2022-12-16 16:08:45.354',
+        updatedAt: '2022-12-16 21:10:02.076',
+        tenantId: 1,
+        id: 7
+      },
+      {
+        key: 'rejectCalls',
+        value: 'disabled',
+        createdAt: '2020-12-12 16:08:45.354',
+        updatedAt: '2020-12-12 16:08:45.354',
+        tenantId: 1,
+        id: 9
+      },
+      {
+        key: 'callRejectMessage',
+        value: 'As chamadas de voz e vídeo estão desabilitadas para esse WhatsApp, favor enviar uma mensagem de texto.',
+        createdAt: '2020-12-12 16:08:45.354',
+        updatedAt: '2020-12-12 16:08:45.354',
+        tenantId: 1,
+        id: 10
+      }
+    ], {});
   },
 
-  down: (queryInterface: QueryInterface) => {
-    return queryInterface.bulkDelete("Tenants", {});
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Settings', null, {});
   }
 };
+
+

@@ -2,20 +2,12 @@ import { QueryInterface } from "sequelize";
 
 module.exports = {
   up: (queryInterface: QueryInterface) => {
-    return Promise.all([
-      queryInterface.sequelize.query(
-        "select gen_random_uuid()"
-        // 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
-      )
-    ]);
+    // Retornar uma promessa com uma instrução SELECT que não faz nada
+    return queryInterface.sequelize.query("SELECT 1;");
   },
 
   down: (queryInterface: QueryInterface) => {
-    return Promise.all([
-      queryInterface.sequelize.query(
-        "select gen_random_uuid()"
-        // 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
-      )
-    ]);
+    // Retornar uma promessa com uma instrução SELECT que não faz nada
+    return queryInterface.sequelize.query("SELECT 1;");
   }
 };

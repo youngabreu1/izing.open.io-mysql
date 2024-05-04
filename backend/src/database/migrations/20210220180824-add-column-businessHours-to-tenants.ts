@@ -4,9 +4,9 @@ import { BusinessHours } from "../../utils/defaultConstants";
 module.exports = {
   up: (queryInterface: QueryInterface) => {
     return queryInterface.addColumn("Tenants", "businessHours", {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
-      defaultValue: BusinessHours
+      defaultValue: JSON.stringify(BusinessHours) // Convertendo o objeto para uma string JSON
     });
   },
 

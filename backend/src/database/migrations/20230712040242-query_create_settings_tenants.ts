@@ -4,12 +4,12 @@ module.exports = {
   up: async (queryInterface: QueryInterface) => {
     // Obtém a lista de tenants existentes no banco de dados
     const tenants = await queryInterface.sequelize.query(
-      'SELECT id FROM "Tenants"',
+      'SELECT id FROM Tenants', // Removendo as aspas em torno do nome da tabela
       { type: QueryTypes.SELECT }
     );
-    
+
     const settingId:any = await queryInterface.sequelize.query(
-      'select max(id) mId from "Settings"',
+      'SELECT MAX(id) AS mId FROM Settings', // Removendo as aspas em torno do nome da tabela
       { type: QueryTypes.SELECT }
     );
 
@@ -45,7 +45,7 @@ module.exports = {
         const bulk = newSettings.map((s, i) => {
           return {
             ...s,
-            id: settingId[0].mid + idx + 1 + i,
+            id: settingId[0].mId + idx + 1 + i,
           }
         })
 
@@ -56,9 +56,7 @@ module.exports = {
   },
 
   down: async (queryInterface: QueryInterface) => {
-    // Remove as configurações inseridas para cada tenant
-    await queryInterface.sequelize.query('SELECT id FROM "Tenants"', {
-      type: QueryTypes.SELECT
-    });
+    // Remova as configurações inseridas para cada tenant
+    // Implemente o código para remover as configurações conforme necessário
   }
 };

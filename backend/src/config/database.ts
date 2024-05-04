@@ -14,10 +14,10 @@ module.exports = {
   },
   dialect: process.env.DB_DIALECT || "postgres",
   timezone: "UTC",
-  host: process.env.POSTGRES_HOST || "localhost",
+  host: process.env.MYSQL_HOST || "localhost",
   port: process.env.DB_PORT || "5432",
-  database: process.env.POSTGRES_DB || "wchats",
-  username: process.env.POSTGRES_USER || "postgres",
-  password: process.env.POSTGRES_PASSWORD || "marina@0509",
+  database: process.env.MYSQL_DB || "wchats",
+  username: process.env.MYSQL_USER || "postgres",
+  password: process.env.MYSQL_PASSWORD || "marina@0509",
   logging: false
 };

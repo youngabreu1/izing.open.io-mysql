@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface: QueryInterface) => {
     return Promise.all([
       queryInterface.sequelize.query(
-        'UPDATE "Messages" set "messageId"  = "id";'
+        'UPDATE Messages SET messageId = id;'
       )
     ]);
   },
@@ -12,7 +12,7 @@ module.exports = {
   down: (queryInterface: QueryInterface) => {
     return Promise.all([
       queryInterface.sequelize.query(
-        'UPDATE "Messages" set "messageId"  = null;'
+        'UPDATE Messages SET messageId = null;'
       )
     ]);
   }

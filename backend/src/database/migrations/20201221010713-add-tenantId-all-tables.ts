@@ -1,68 +1,94 @@
-import { QueryInterface, DataTypes } from "sequelize";
-
 module.exports = {
-  up: (queryInterface: QueryInterface) => {
+  up: async (queryInterface, Sequelize) => {
     return Promise.all([
-      queryInterface.addColumn("Tickets", "tenantId", {
-        type: DataTypes.INTEGER,
-        references: { model: "Tenants", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "restrict",
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.describeTable("Tickets").then(attributes => {
+        if (!attributes.tenantId) {
+          return queryInterface.addColumn("Tickets", "tenantId", {
+            type: Sequelize.INTEGER,
+            references: { model: "Tenants", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+            allowNull: false,
+            defaultValue: 1
+          });
+        }
       }),
-      queryInterface.addColumn("Contacts", "tenantId", {
-        type: DataTypes.INTEGER,
-        references: { model: "Tenants", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "restrict",
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.describeTable("Contacts").then(attributes => {
+        if (!attributes.tenantId) {
+          return queryInterface.addColumn("Contacts", "tenantId", {
+            type: Sequelize.INTEGER,
+            references: { model: "Tenants", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+            allowNull: false,
+            defaultValue: 1
+          });
+        }
       }),
-      queryInterface.addColumn("Queues", "tenantId", {
-        type: DataTypes.INTEGER,
-        references: { model: "Tenants", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "restrict",
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.describeTable("Queues").then(attributes => {
+        if (!attributes.tenantId) {
+          return queryInterface.addColumn("Queues", "tenantId", {
+            type: Sequelize.INTEGER,
+            references: { model: "Tenants", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+            allowNull: false,
+            defaultValue: 1
+          });
+        }
       }),
-      queryInterface.addColumn("Settings", "tenantId", {
-        type: DataTypes.INTEGER,
-        references: { model: "Tenants", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "restrict",
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.describeTable("Settings").then(attributes => {
+        if (!attributes.tenantId) {
+          return queryInterface.addColumn("Settings", "tenantId", {
+            type: Sequelize.INTEGER,
+            references: { model: "Tenants", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+            allowNull: false,
+            defaultValue: 1
+          });
+        }
       }),
-      queryInterface.addColumn("AutoReply", "tenantId", {
-        type: DataTypes.INTEGER,
-        references: { model: "Tenants", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "restrict",
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.describeTable("AutoReply").then(attributes => {
+        if (!attributes.tenantId) {
+          return queryInterface.addColumn("AutoReply", "tenantId", {
+            type: Sequelize.INTEGER,
+            references: { model: "Tenants", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+            allowNull: false,
+            defaultValue: 1
+          });
+        }
       }),
-      queryInterface.addColumn("Users", "tenantId", {
-        type: DataTypes.INTEGER,
-        references: { model: "Tenants", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "restrict",
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.describeTable("Users").then(attributes => {
+        if (!attributes.tenantId) {
+          return queryInterface.addColumn("Users", "tenantId", {
+            type: Sequelize.INTEGER,
+            references: { model: "Tenants", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+            allowNull: false,
+            defaultValue: 1
+          });
+        }
       }),
-      queryInterface.addColumn("Whatsapps", "tenantId", {
-        type: DataTypes.INTEGER,
-        references: { model: "Tenants", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "restrict",
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.describeTable("Whatsapps").then(attributes => {
+        if (!attributes.tenantId) {
+          return queryInterface.addColumn("Whatsapps", "tenantId", {
+            type: Sequelize.INTEGER,
+            references: { model: "Tenants", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+            allowNull: false,
+            defaultValue: 1
+          });
+        }
       })
     ]);
   },
 
-  down: (queryInterface: QueryInterface) => {
+  down: async (queryInterface, Sequelize) => {
     return Promise.all([
       queryInterface.removeColumn("Tickets", "tenantId"),
       queryInterface.removeColumn("Contacts", "tenantId"),

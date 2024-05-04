@@ -1,25 +1,23 @@
 import { QueryInterface, DataTypes } from "sequelize";
 
 module.exports = {
-  up: (queryInterface: QueryInterface) => {
-    return Promise.all([
-      queryInterface.addColumn("Whatsapps", "fbPageId", {
-        type: DataTypes.TEXT,
-        allowNull: true,
-        defaultValue: null
-      }),
-      queryInterface.addColumn("Whatsapps", "fbObject", {
-        type: DataTypes.JSONB,
-        allowNull: true,
-        defaultValue: null
-      })
-    ]);
+  up: async (queryInterface: QueryInterface) => {
+    // Verificar se a coluna fbPageId já existe na tabela Whatsapps
+    const existingColumns = await queryInterface.describeTable("Whatsapps");
+    if (existingColumns.hasOwnProperty("fbPageId")) {
+      console.log("A coluna 'fbPageId' já existe na tabela 'Whatsapps'. Nenhuma ação necessária.");
+      return Promise.resolve();
+    }
+
+    // Se a coluna fbPageId não existe, adicione-a
+    return queryInterface.addColumn("Whatsapps", "fbPageId", {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: null
+    });
   },
 
   down: (queryInterface: QueryInterface) => {
-    return Promise.all([
-      queryInterface.removeColumn("Whatsapps", "fbPageId"),
-      queryInterface.removeColumn("Whatsapps", "fbObject")
-    ]);
+    return queryInterface.removeColumn("Whatsapps", "fbPageId");
   }
 };

@@ -1,4 +1,4 @@
-import { QueryInterface, DataTypes, Sequelize } from "sequelize";
+import { QueryInterface, DataTypes } from "sequelize";
 
 module.exports = {
   up: (queryInterface: QueryInterface) => {
@@ -8,7 +8,7 @@ module.exports = {
           allowNull: false,
           primaryKey: true,
           type: DataTypes.UUID,
-          defaultValue: Sequelize.literal("gen_random_uuid()")
+          defaultValue: DataTypes.UUIDV4 // Gera um UUID v4 automaticamente
         },
         sessionId: {
           type: DataTypes.INTEGER,
